@@ -1,3 +1,3 @@
 # Calculator
-A calculator by JavaFx.  
-Create by WCG, DYH, ZX.
+A calculator by JavaFx.   
+Created by WCG, DYH, ZX.
