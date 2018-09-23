@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sample.lexer.Lexer;
 import sample.lexer.Token;
+import sample.parser.Parser;
 
 import java.util.Scanner;
 
@@ -22,16 +23,22 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+        //launch(args);
 
         //Added by 魏春光
-        /*Scanner sc=new Scanner(System.in);
+        Scanner sc=new Scanner(System.in);
         while (true){
+            //词法分析
             Lexer l = new Lexer(sc.next());
             for(Token t : l.getTokens()){
                 System.out.println(t);
             }
-        }*/
-        //将注释去掉再将第一行注释即可测试词法分析
+
+            //语法分析
+            Parser p = new Parser();
+            if(p.readString(l.getTokens())) System.out.println("输入句子形式正确");
+            else System.out.println("输入句子形式错误");
+        }
+
     }
 }
