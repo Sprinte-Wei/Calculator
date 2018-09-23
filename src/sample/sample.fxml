@@ -2,22 +2,22 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.effect.SepiaTone?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane fx:id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <GridPane hgap="5.0" layoutY="215.0" prefHeight="300.0" prefWidth="360.0" vgap="15.0">
+      <GridPane fx:id="gridPane" hgap="5.0" layoutY="251.0" prefHeight="337.0" prefWidth="360.0" vgap="5.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -26,119 +26,170 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
-         <effect>
-            <SepiaTone />
-         </effect>
          <children>
-            <JFXButton fx:id="num7" buttonType="RAISED" prefHeight="62.0" prefWidth="107.0" text="7" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
+            <JFXButton fx:id="btnDelete" buttonType="RAISED" onAction="#onBtnDeleteClicked" prefHeight="64.0" prefWidth="107.0" style="-fx-background-color: #FFFFFF;" text="D" GridPane.columnIndex="1">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="num9" buttonType="RAISED" prefHeight="62.0" prefWidth="135.0" text="9" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <JFXButton fx:id="btnLeftBrac" buttonType="RAISED" onAction="#onBtnLeftBracClicked" prefHeight="64.0" prefWidth="110.0" style="-fx-background-color: #FFFFFF;" text="(" GridPane.columnIndex="2">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="num4" buttonType="RAISED" prefHeight="62.0" prefWidth="138.0" text="4" GridPane.rowIndex="2">
+            <JFXButton fx:id="btnRightBrac" buttonType="RAISED" onAction="#onBtnRightBracClicked" prefHeight="64.0" prefWidth="162.0" style="-fx-background-color: #FFFFFF;" text=")" GridPane.columnIndex="3">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="num5" buttonType="RAISED" prefHeight="76.0" prefWidth="86.0" text="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <JFXButton fx:id="num7" buttonType="RAISED" onAction="#onNum7Clicked" prefHeight="64.0" prefWidth="114.0" style="-fx-background-color: #FFFFFF;" text="7" GridPane.rowIndex="1">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="num6" buttonType="RAISED" prefHeight="62.0" prefWidth="124.0" text="6" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <JFXButton fx:id="num8" buttonType="RAISED" onAction="#onNum8Clicked" prefHeight="64.0" prefWidth="107.0" style="-fx-background-color: #FFFFFF;" text="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="num1" buttonType="RAISED" prefHeight="89.0" prefWidth="86.0" text="1" GridPane.rowIndex="3">
+            <JFXButton fx:id="num9" buttonType="RAISED" onAction="#onNum9Clicked" prefHeight="64.0" prefWidth="111.0" style="-fx-background-color: #FFFFFF;" text="9" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="num2" buttonType="RAISED" prefHeight="62.0" prefWidth="112.0" text="2" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <JFXButton fx:id="num4" buttonType="RAISED" onAction="#onNum4Clicked" prefHeight="63.0" prefWidth="124.0" style="-fx-background-color: #FFFFFF;" text="4" GridPane.rowIndex="2">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="num3" buttonType="RAISED" prefHeight="62.0" prefWidth="117.0" text="3" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <JFXButton fx:id="num5" buttonType="RAISED" onAction="#onNum5Clicked" prefHeight="63.0" prefWidth="121.0" style="-fx-background-color: #FFFFFF;" text="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="btnSquare" buttonType="RAISED" prefHeight="59.0" prefWidth="94.0" text="x² " GridPane.columnIndex="2">
+            <JFXButton fx:id="num6" buttonType="RAISED" onAction="#onNum6Clicked" prefHeight="63.0" prefWidth="111.0" style="-fx-background-color: #FFFFFF;" text="6" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="num8" buttonType="RAISED" prefHeight="85.0" prefWidth="85.0" text="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <JFXButton fx:id="num1" buttonType="RAISED" onAction="#onNum1Clicked" prefHeight="63.0" prefWidth="129.0" style="-fx-background-color: #FFFFFF;" text="1" GridPane.rowIndex="3">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="btnDelete" buttonType="RAISED" prefHeight="52.0" prefWidth="117.0" text="D" GridPane.columnIndex="1">
+            <JFXButton fx:id="num2" buttonType="RAISED" onAction="#onNum2Clicked" prefHeight="63.0" prefWidth="130.0" style="-fx-background-color: #FFFFFF;" text="2" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="btnClear" buttonType="RAISED" prefHeight="52.0" prefWidth="111.0" text="C">
+            <JFXButton fx:id="num3" buttonType="RAISED" onAction="#onNum3Clicked" prefHeight="63.0" prefWidth="126.0" style="-fx-background-color: #FFFFFF;" text="3" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="btnDot" buttonType="RAISED" prefHeight="202.0" prefWidth="86.0" text="." GridPane.rowIndex="4">
+            <JFXButton fx:id="num0" buttonType="RAISED" onAction="#onNum0Clicked" prefHeight="63.0" prefWidth="114.0" style="-fx-background-color: #FFFFFF;" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="num0" buttonType="RAISED" prefHeight="52.0" prefWidth="111.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <JFXButton fx:id="btnDot" buttonType="RAISED" onAction="#onBtnDotClicked" prefHeight="63.0" prefWidth="114.0" style="-fx-background-color: #E0E0E0;" text="." GridPane.rowIndex="4">
                <font>
                   <Font size="30.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="btnDivide" buttonType="RAISED" prefHeight="52.0" prefWidth="107.0" text="/" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <JFXButton fx:id="btnEqual" buttonType="RAISED" onAction="#onBtnEqualClicked" prefHeight="64.0" prefWidth="112.0" style="-fx-background-color: #FFFFFF;" text="=" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="btnEqual" buttonType="RAISED" prefHeight="52.0" prefWidth="114.0" text="=" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <JFXButton fx:id="btnDivide" buttonType="RAISED" onAction="#onBtnDivideClicked" prefHeight="63.0" prefWidth="114.0" style="-fx-background-color: #E0E0E0;" text="/" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="btnPlus" buttonType="RAISED" prefHeight="52.0" prefWidth="115.0" text="+" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <JFXButton fx:id="btnPlus" buttonType="RAISED" onAction="#onBtnPlusClicked" prefHeight="64.0" prefWidth="112.0" ripplerFill="WHITE" style="-fx-background-color: #4968BC;" text="+" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="btnMinus" buttonType="RAISED" prefHeight="52.0" prefWidth="125.0" text="-" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <JFXButton fx:id="btnMinus" buttonType="RAISED" onAction="#onBtnMinusClicked" prefHeight="64.0" prefWidth="112.0" ripplerFill="WHITE" style="-fx-background-color: #4968BC;" text="-" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="btnMultiply" buttonType="RAISED" prefHeight="52.0" prefWidth="121.0" text="*" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <JFXButton fx:id="btnMultiply" buttonType="RAISED" onAction="#onBtnMultiplyClicked" prefHeight="64.0" prefWidth="112.0" ripplerFill="WHITE" style="-fx-background-color: #4968BC;" text="*" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
-            <JFXButton fx:id="btnSqrt" buttonType="RAISED" prefHeight="52.0" prefWidth="120.0" text="√x" GridPane.columnIndex="3">
+            <JFXButton fx:id="btnClear" buttonType="RAISED" onAction="#onBtnClearClicked" prefHeight="64.0" prefWidth="107.0" style="-fx-background-color: #FFFFFF;" text="C">
                <font>
-                  <Font size="30.0" />
+                  <Font size="25.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
          </children>
       </GridPane>
-      <JFXTextArea focusColor="#d1c986e8" labelFloat="true" prefHeight="140.0" prefWidth="360.0">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </JFXTextArea>
+      <JFXTextArea fx:id="mainText" layoutY="95.0" prefHeight="122.0" prefWidth="360.0" />
+      <JFXTextField editable="false" layoutY="58.0" prefHeight="37.0" prefWidth="360.0" />
    </children>
 </Pane>
