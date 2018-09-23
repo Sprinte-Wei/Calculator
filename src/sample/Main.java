@@ -28,7 +28,7 @@ public class Main extends Application {
         //launch(args);
 
         //Added by 魏春光
-        Scanner sc=new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         while (true){
             try {
                 //词法分析
