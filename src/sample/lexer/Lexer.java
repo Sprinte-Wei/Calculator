@@ -15,14 +15,14 @@ public class Lexer {
         currentCharPosition = 0;
     }
 
-    public List<Token> getTokens(){
+    public List<Token> getTokens() throws LexicalException{
         while (currentCharPosition != input.length()){
-            try{
+            //try{
                 nextToken();
-            }
-            catch (LexicalException e){
-                System.out.println(e.getMessage());
-            }
+            //}
+            //catch (LexicalException e){
+                //System.out.println(e.getMessage());
+            //}
         }
         return tokens;
     }
