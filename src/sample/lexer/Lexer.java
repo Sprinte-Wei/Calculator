@@ -15,14 +15,14 @@ public class Lexer {
         currentCharPosition = 0;
     }
 
-    public List<Token> getTokens(){
+    public List<Token> getTokens() throws LexicalException{
         while (currentCharPosition != input.length()){
-            try{
+            //try{
                 nextToken();
-            }
-            catch (LexicalException e){
-                System.out.println(e.getMessage());
-            }
+            //}
+            //catch (LexicalException e){
+                //System.out.println(e.getMessage());
+            //}
         }
         return tokens;
     }
@@ -65,7 +65,7 @@ public class Lexer {
         s.append(input.charAt(currentCharPosition++));
         int location = currentCharPosition;
         while (true){
-            if(currentCharPosition == input.length() || isTheEndOfNum(input.charAt(currentCharPosition))){
+            if(currentCharPosition == input.length() || !isLegalCharInNum(input.charAt(currentCharPosition))){
                 if(isLegalNum(s.toString())){
                     return new Token(TokenType.NUMBER, s.toString());
                 }
@@ -79,8 +79,8 @@ public class Lexer {
         }
     }
 
-    private boolean isTheEndOfNum(char c){
-        return c == ' ' || c == '\t' || c == '+' || c == '-' || c == '/' || c == '*' || c == '(' || c == ')';
+    private boolean isLegalCharInNum(char c){
+        return (c >= '0' && c <= '9') || c == '.';
     }
 
     private boolean isLegalNum(String s){
