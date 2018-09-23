@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sample.lexer.Lexer;
+import sample.lexer.LexicalException;
 import sample.lexer.Token;
 import sample.parser.Parser;
 
@@ -29,16 +30,22 @@ public class Main extends Application {
         //Added by 魏春光
         Scanner sc=new Scanner(System.in);
         while (true){
-            //词法分析
-            Lexer l = new Lexer(sc.next());
-            for(Token t : l.getTokens()){
-                System.out.println(t);
-            }
+            try {
+                //词法分析
+                Lexer l = new Lexer(sc.next());
+                for (Token t : l.getTokens()) {
+                    System.out.println(t);
+                }
 
-            //语法分析
-            Parser p = new Parser();
-            if(p.readString(l.getTokens())) System.out.println("输入句子形式正确");
-            else System.out.println("输入句子形式错误");
+                //语法分析
+                Parser p = new Parser();
+                if (p.readString(l.getTokens())) System.out.println("输入句子形式正确");
+                else System.out.println("输入句子形式错误");
+            }
+            catch (LexicalException e)
+            {
+                e.printStackTrace();
+            }
         }
 
     }
