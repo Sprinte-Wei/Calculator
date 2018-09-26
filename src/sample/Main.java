@@ -10,6 +10,8 @@ import sample.lexer.LexicalException;
 import sample.lexer.Token;
 import sample.parser.Parser;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main extends Application {
@@ -33,14 +35,17 @@ public class Main extends Application {
             try {
                 //词法分析
                 Lexer l = new Lexer(sc.nextLine());
-                for (Token t : l.getTokens()) {
+                List<Token> tokens = l.getTokens();
+                for (Token t : tokens) {
                     System.out.println(t);
                 }
 
+
+
                 //语法分析
-                Parser p = new Parser();
+                /*Parser p = new Parser();
                 if (p.readString(l.getTokens())) System.out.println("输入句子形式正确");
-                else System.out.println("输入句子形式错误");
+                else System.out.println("输入句子形式错误");*/
             }
             catch (LexicalException e)
             {
