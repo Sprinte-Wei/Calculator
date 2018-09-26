@@ -83,7 +83,7 @@ public class Parser {
 
             //通过表内容来进行处理
             State nextState = sTable[state][symbol];
-            if(nextState.getState() == -1) throw new ParserException();//输入形式错误
+            if(nextState.getState() == -1) throw new ParserException(tokenQueue.peek().getLocation());//输入形式错误
             else if(nextState.isR())//规约状态
             {
                 for(int i = 0; i < rs[nextState.getState() - 1] * 2; i++)

@@ -49,7 +49,7 @@ public class Main extends Application {
             }
             catch (ParserException e)
             {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
 
         }

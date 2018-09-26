@@ -7,6 +7,4 @@ public class ParserException extends Exception {
         super("Parser Error At " + location + "!");
     }
 
-    public ParserException(){}
-
 }
