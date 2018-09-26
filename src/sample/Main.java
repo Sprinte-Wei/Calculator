@@ -28,22 +28,22 @@ public class Main extends Application {
         launch(args);
 
         //Added by 魏春光
-        Scanner sc=new Scanner(System.in);
-
+        Scanner sc = new Scanner(System.in);
         while (true){
-            //词法分析
-            try{
+            try {
+                //词法分析
                 Lexer l = new Lexer(sc.next());
-                for(Token t : l.getTokens()){
+                for (Token t : l.getTokens()) {
                     System.out.println(t);
                 }
 
                 //语法分析
                 Parser p = new Parser();
-                if(p.readString(l.getTokens())) System.out.println("输入句子形式正确");
+                if (p.readString(l.getTokens())) System.out.println("输入句子形式正确");
                 else System.out.println("输入句子形式错误");
             }
-            catch (LexicalException e){
+            catch (LexicalException e)
+            {
                 e.printStackTrace();
             }
         }
