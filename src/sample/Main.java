@@ -45,7 +45,7 @@ public class Main extends Application {
             }
             catch (LexicalException e)
             {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
             catch (ParserException e)
             {
