@@ -9,6 +9,7 @@ import sample.lexer.Lexer;
 import sample.lexer.LexicalException;
 import sample.lexer.Token;
 import sample.parser.Parser;
+import sample.parser.ParserException;
 
 import java.util.Scanner;
 
@@ -25,27 +26,32 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+        //launch(args);
 
         //Added by 魏春光
         Scanner sc = new Scanner(System.in);
         while (true){
             try {
                 //词法分析
-                Lexer l = new Lexer(sc.next());
+                Lexer l = new Lexer(sc.nextLine());
                 for (Token t : l.getTokens()) {
                     System.out.println(t);
                 }
 
                 //语法分析
                 Parser p = new Parser();
-                if (p.readString(l.getTokens())) System.out.println("输入句子形式正确");
-                else System.out.println("输入句子形式错误");
+                p.readString(l.getTokens());
+                System.out.println("输入句子形式正确");
             }
             catch (LexicalException e)
             {
                 e.printStackTrace();
             }
+            catch (ParserException e)
+            {
+                e.printStackTrace();
+            }
+
         }
 
     }
