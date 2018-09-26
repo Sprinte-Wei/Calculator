@@ -9,6 +9,7 @@ import sample.lexer.Lexer;
 import sample.lexer.LexicalException;
 import sample.lexer.Token;
 import sample.parser.Parser;
+import sample.parser.ParserException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,14 +44,19 @@ public class Main extends Application {
 
 
                 //语法分析
-                /*Parser p = new Parser();
-                if (p.readString(l.getTokens())) System.out.println("输入句子形式正确");
-                else System.out.println("输入句子形式错误");*/
+                Parser p = new Parser();
+                p.readString(l.getTokens());
+                System.out.println("输入句子形式正确");
             }
             catch (LexicalException e)
             {
                 System.out.println(e.getMessage());
             }
+            catch (ParserException e)
+            {
+                e.printStackTrace();
+            }
+
         }
 
     }
