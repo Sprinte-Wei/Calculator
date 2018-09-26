@@ -30,31 +30,24 @@ public class Lexer {
     private void nextToken() throws LexicalException {
         if(input.charAt(currentCharPosition) == ' ' || input.charAt(currentCharPosition) == '\t'){
             throw new LexicalException(currentCharPosition+1);
-            //currentCharPosition++;
         }
         else if(input.charAt(currentCharPosition) == '('){
-            tokens.add(new Token(TokenType.LEFT_PARENTHESIS, "(", currentCharPosition));
-            currentCharPosition++;
+            tokens.add(new Token(TokenType.LEFT_PARENTHESIS, "(", ++currentCharPosition));
         }
         else if(input.charAt(currentCharPosition) == ')'){
-            tokens.add(new Token(TokenType.RIGHT_PARENTHESIS, ")", currentCharPosition));
-            currentCharPosition++;
+            tokens.add(new Token(TokenType.RIGHT_PARENTHESIS, ")", ++currentCharPosition));
         }
         else if(input.charAt(currentCharPosition) == '+'){
-            tokens.add(new Token(TokenType.PLUS, "+", currentCharPosition));
-            currentCharPosition++;
+            tokens.add(new Token(TokenType.PLUS, "+", ++currentCharPosition));
         }
         else if(input.charAt(currentCharPosition) == '-'){
-            tokens.add(new Token(TokenType.MINUS, "-", currentCharPosition));
-            currentCharPosition++;
+            tokens.add(new Token(TokenType.MINUS, "-", ++currentCharPosition));
         }
         else if(input.charAt(currentCharPosition) == '/'){
-            tokens.add(new Token(TokenType.DIVIDE, "/", currentCharPosition));
-            currentCharPosition++;
+            tokens.add(new Token(TokenType.DIVIDE, "/", ++currentCharPosition));
         }
         else if(input.charAt(currentCharPosition) == '*'){
-            tokens.add(new Token(TokenType.MULTIPLY, "*", currentCharPosition));
-            currentCharPosition++;
+            tokens.add(new Token(TokenType.MULTIPLY, "*", ++currentCharPosition));
         }
         else {
             tokens.add(readNumber());
