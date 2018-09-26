@@ -59,7 +59,7 @@ public class Parser {
         {
             tokenQueue.offer(tokens.get(i));
         }
-        tokenQueue.offer(new Token(TokenType.END,""));//补上句子结尾
+        tokenQueue.offer(new Token(TokenType.END,"", (tokens.get(tokens.size()-1)).getLocation() + (tokens.get(tokens.size()-1).getValue()).length()));//补上句子结尾
 
         //开始读取
         int Vn = -1;//记录非终结符号，用于递归

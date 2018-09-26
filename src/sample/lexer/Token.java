@@ -4,10 +4,12 @@ public class Token {
 
     private TokenType type;
     private String value;
+    private int location;
 
-    public Token(TokenType type, String value) {
+    public Token(TokenType type, String value, int location) {
         this.type = type;
         this.value = value;
+        this.location = location;
     }
 
     public TokenType getType() {
@@ -16,6 +18,10 @@ public class Token {
 
     public String getValue() {
         return value;
+    }
+
+    public int getLocation(){
+        return location;
     }
 
     @Override

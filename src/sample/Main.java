@@ -25,14 +25,14 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+        //launch(args);
 
         //Added by 魏春光
         Scanner sc = new Scanner(System.in);
         while (true){
             try {
                 //词法分析
-                Lexer l = new Lexer(sc.next());
+                Lexer l = new Lexer(sc.nextLine());
                 for (Token t : l.getTokens()) {
                     System.out.println(t);
                 }
@@ -44,7 +44,7 @@ public class Main extends Application {
             }
             catch (LexicalException e)
             {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
 

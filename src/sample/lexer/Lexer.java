@@ -29,30 +29,31 @@ public class Lexer {
 
     private void nextToken() throws LexicalException {
         if(input.charAt(currentCharPosition) == ' ' || input.charAt(currentCharPosition) == '\t'){
-            currentCharPosition++;
+            throw new LexicalException(currentCharPosition+1);
+            //currentCharPosition++;
         }
         else if(input.charAt(currentCharPosition) == '('){
-            tokens.add(new Token(TokenType.LEFT_PARENTHESIS, "("));
+            tokens.add(new Token(TokenType.LEFT_PARENTHESIS, "(", currentCharPosition));
             currentCharPosition++;
         }
         else if(input.charAt(currentCharPosition) == ')'){
-            tokens.add(new Token(TokenType.RIGHT_PARENTHESIS, ")"));
+            tokens.add(new Token(TokenType.RIGHT_PARENTHESIS, ")", currentCharPosition));
             currentCharPosition++;
         }
         else if(input.charAt(currentCharPosition) == '+'){
-            tokens.add(new Token(TokenType.PLUS, "+"));
+            tokens.add(new Token(TokenType.PLUS, "+", currentCharPosition));
             currentCharPosition++;
         }
         else if(input.charAt(currentCharPosition) == '-'){
-            tokens.add(new Token(TokenType.MINUS, "-"));
+            tokens.add(new Token(TokenType.MINUS, "-", currentCharPosition));
             currentCharPosition++;
         }
         else if(input.charAt(currentCharPosition) == '/'){
-            tokens.add(new Token(TokenType.DIVIDE, "/"));
+            tokens.add(new Token(TokenType.DIVIDE, "/", currentCharPosition));
             currentCharPosition++;
         }
         else if(input.charAt(currentCharPosition) == '*'){
-            tokens.add(new Token(TokenType.MULTIPLY, "*"));
+            tokens.add(new Token(TokenType.MULTIPLY, "*", currentCharPosition));
             currentCharPosition++;
         }
         else {
@@ -67,7 +68,7 @@ public class Lexer {
         while (true){
             if(currentCharPosition == input.length() || !isLegalCharInNum(input.charAt(currentCharPosition))){
                 if(isLegalNum(s.toString())){
-                    return new Token(TokenType.NUMBER, s.toString());
+                    return new Token(TokenType.NUMBER, s.toString(), location);
                 }
                 else {
                     throw new LexicalException(location);
