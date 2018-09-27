@@ -8,7 +8,7 @@ import java.util.*;
 public class Calculator {
 
     //中缀转后缀
-    public ArrayList<String> transferToPostfix(List<Token> tokens){
+    private ArrayList<String> transferToPostfix(List<Token> tokens){
         ArrayList<String> postfix = new ArrayList<>();
         Stack<String> operators = new Stack<>();
         Iterator<Token> it = tokens.iterator();

@@ -10,9 +10,8 @@ import sample.lexer.Lexer;
 import sample.lexer.LexicalException;
 import sample.lexer.Token;
 import sample.parser.Parser;
-import sample.parser.ParserException;
+import sample.parser.SyntaxException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -44,23 +43,19 @@ public class Main extends Application {
                 //语法分析
                 Parser p = new Parser();
 
-                if (p.readString(tokens)){
-                    System.out.println("输入句子形式正确");
-                }
-                else {
-                    System.out.println("输入句子形式错误");
-                }
+                p.readString(tokens);
+
+                System.out.println("This is an legal statement.");
+
                 Calculator c = new Calculator();
-                for(String s : c.transferToPostfix(tokens)){
-                    System.out.println(s);
-                }
-                System.out.println(c.calculate(tokens));
+
+                System.out.println("Outcome: " + c.calculate(tokens));
 
             }
             catch (LexicalException e) {
                 System.out.println(e.getMessage());
             }
-            catch (ParserException e) {
+            catch (SyntaxException e) {
                 System.out.println(e.getMessage());
             }
 
