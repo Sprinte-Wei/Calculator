@@ -10,6 +10,7 @@ import sample.lexer.Lexer;
 import sample.lexer.LexicalException;
 import sample.lexer.Token;
 import sample.parser.Parser;
+import sample.parser.ParserException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,7 @@ public class Main extends Application {
                 }
                 //语法分析
                 Parser p = new Parser();
+
                 if (p.readString(tokens)){
                     System.out.println("输入句子形式正确");
                 }
@@ -53,10 +55,15 @@ public class Main extends Application {
                     System.out.println(s);
                 }
                 System.out.println(c.calculate(tokens));
+
             }
             catch (LexicalException e) {
                 System.out.println(e.getMessage());
             }
+            catch (ParserException e) {
+                System.out.println(e.getMessage());
+            }
+
         }
 
     }
