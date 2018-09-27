@@ -7,6 +7,23 @@ import java.util.*;
 
 public class Calculator {
 
+    //计算后缀式结果
+    public double calculate(List<Token> tokens){
+        ArrayList<String> postfix = transferToPostfix(tokens);
+        Stack<Double> operand = new Stack<>();
+        Iterator<String> it = postfix.iterator();
+        while (it.hasNext()){
+            String currentOperand = it.next();
+            if(isOperator(currentOperand)){
+                operand.push(calculate(operand.pop(), operand.pop(), currentOperand));
+            }
+            else {
+                operand.push(Double.parseDouble(currentOperand));
+            }
+        }
+        return operand.pop();
+    }
+
     //中缀转后缀
     private ArrayList<String> transferToPostfix(List<Token> tokens){
         ArrayList<String> postfix = new ArrayList<>();
@@ -37,23 +54,6 @@ public class Calculator {
             postfix.add(operators.pop());
         }
         return postfix;
-    }
-
-    //计算后缀式结果
-    public double calculate(List<Token> tokens){
-        ArrayList<String> postfix = transferToPostfix(tokens);
-        Stack<Double> operand = new Stack<>();
-        Iterator<String> it = postfix.iterator();
-        while (it.hasNext()){
-            String currentOperand = it.next();
-            if(isOperator(currentOperand)){
-                operand.push(calculate(operand.pop(), operand.pop(), currentOperand));
-            }
-            else {
-                operand.push(Double.parseDouble(currentOperand));
-            }
-        }
-        return operand.pop();
     }
 
     //优先级问题，左括号和右括号特殊对待
