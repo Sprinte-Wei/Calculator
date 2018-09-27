@@ -2,14 +2,19 @@ package sample;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import sample.lexer.Lexer;
 import sample.lexer.LexicalException;
 import sample.lexer.Token;
@@ -19,7 +24,7 @@ import java.util.ResourceBundle;
 import java.net.URL;
 
 public class Controller implements Initializable {
-
+    int length=0;
     @FXML
     private Pane mainContainer;
     @FXML
@@ -65,16 +70,28 @@ public class Controller implements Initializable {
     @FXML
     private JFXButton btnDot;
     @FXML
-    private JFXTextArea mainText;
+    private JFXTextField mainText;
+    @FXML
+    private JFXTextField resultText;
 
     private StringBuilder currentExpression;
 
-
-
     @Override
-    public void initialize(URL url, ResourceBundle rb){
+    public void initialize(URL url, ResourceBundle rb) {
 
         gridPane.prefWidthProperty().bind(mainContainer.widthProperty());
+
+        mainText.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(mainText.getText().length()>=18) {
+                    mainText.setFont(new Font("Arial Bold", 15.0));
+                }
+                else{
+                    mainText.setFont(new Font("Arial Bold", 30.0));
+                }
+            }
+        });
 
         /*mainText.setOnKeyTyped(new EventHandler<KeyEvent>() {
             @Override
@@ -91,6 +108,7 @@ public class Controller implements Initializable {
     private void onNum0Clicked(ActionEvent event){
         if(isExpressionLegal()){
             mainText.setText(mainText.getText() + "0");
+            length++;
         }
     }
 
@@ -98,6 +116,7 @@ public class Controller implements Initializable {
     private void onNum1Clicked(ActionEvent event){
         if(isExpressionLegal()){
             mainText.setText(mainText.getText() + "1");
+            length++;
         }
     }
 
@@ -105,6 +124,7 @@ public class Controller implements Initializable {
     private void onNum2Clicked(ActionEvent event){
         if(isExpressionLegal()){
             mainText.setText(mainText.getText() + "2");
+            length++;
         }
     }
 
@@ -112,6 +132,7 @@ public class Controller implements Initializable {
     private void onNum3Clicked(ActionEvent event){
         if(isExpressionLegal()){
             mainText.setText(mainText.getText() + "3");
+            length++;
         }
     }
 
@@ -119,6 +140,7 @@ public class Controller implements Initializable {
     private void onNum4Clicked(ActionEvent event){
         if(isExpressionLegal()){
             mainText.setText(mainText.getText() + "4");
+            length++;
         }
     }
 
@@ -126,6 +148,7 @@ public class Controller implements Initializable {
     private void onNum5Clicked(ActionEvent event){
         if(isExpressionLegal()){
             mainText.setText(mainText.getText() + "5");
+            length++;
         }
     }
 
@@ -133,6 +156,7 @@ public class Controller implements Initializable {
     private void onNum6Clicked(ActionEvent event){
         if(isExpressionLegal()){
             mainText.setText(mainText.getText() + "6");
+            length++;
         }
     }
 
@@ -140,6 +164,7 @@ public class Controller implements Initializable {
     private void onNum7Clicked(ActionEvent event){
         if(isExpressionLegal()){
             mainText.setText(mainText.getText() + "7");
+            length++;
         }
     }
 
@@ -147,6 +172,7 @@ public class Controller implements Initializable {
     private void onNum8Clicked(ActionEvent event){
         if(isExpressionLegal()){
             mainText.setText(mainText.getText() + "8");
+            length++;
         }
     }
 
@@ -154,6 +180,7 @@ public class Controller implements Initializable {
     private void onNum9Clicked(ActionEvent event){
         if(isExpressionLegal()){
             mainText.setText(mainText.getText() + "9");
+            length++;
         }
     }
 
@@ -161,6 +188,7 @@ public class Controller implements Initializable {
     private void onBtnDotClicked(ActionEvent event){
         if(isExpressionLegal()){
             mainText.setText(mainText.getText() + ".");
+            length++;
         }
     }
 
@@ -168,6 +196,7 @@ public class Controller implements Initializable {
     private void onBtnDivideClicked(ActionEvent event){
         if(isExpressionLegal()){
             mainText.setText(mainText.getText() + "/");
+            length++;
         }
     }
 
@@ -175,6 +204,7 @@ public class Controller implements Initializable {
     private void onBtnPlusClicked(ActionEvent event){
         if(isExpressionLegal()){
             mainText.setText(mainText.getText() + "+");
+            length++;
         }
     }
 
@@ -182,6 +212,7 @@ public class Controller implements Initializable {
     private void onBtnMinusClicked(ActionEvent event){
         if(isExpressionLegal()){
             mainText.setText(mainText.getText() + "-");
+            length++;
         }
     }
 
@@ -189,6 +220,7 @@ public class Controller implements Initializable {
     private void onBtnMultiplyClicked(ActionEvent event){
         if(isExpressionLegal()){
             mainText.setText(mainText.getText() + "*");
+            length++;
         }
     }
 
@@ -196,6 +228,7 @@ public class Controller implements Initializable {
     private void onBtnLeftBracClicked(ActionEvent event){
         if(isExpressionLegal()){
             mainText.setText(mainText.getText() + "(");
+            length++;
         }
     }
 
@@ -203,11 +236,15 @@ public class Controller implements Initializable {
     private void onBtnRightBracClicked(ActionEvent event){
         if(isExpressionLegal()){
             mainText.setText(mainText.getText() + ")");
+            length++;
         }
     }
 
     @FXML
     private void onBtnEqualClicked(ActionEvent event){
+        double result=0;
+
+        resultText.setText(result+"");
 
     }
 
@@ -215,17 +252,60 @@ public class Controller implements Initializable {
     private void onBtnDeleteClicked(ActionEvent event){
         if(mainText.getText().length() != 0){
             mainText.setText(mainText.getText().substring(0, mainText.getText().length() - 1));
+            length--;
         }
     }
 
     @FXML
     private void onBtnClearClicked(ActionEvent event){
         mainText.setText("");
+        length=0;
+    }
+
+    @FXML
+    private void onKeyPressed(KeyEvent event){
+        if(event.getCode()==KeyCode.DIGIT0||event.getCode()==KeyCode.NUMPAD0 ){onNum0Clicked(new ActionEvent());}
+        if(event.getCode()==KeyCode.DIGIT1||event.getCode()==KeyCode.NUMPAD1){onNum1Clicked(new ActionEvent());}
+        if(event.getCode()==KeyCode.DIGIT2||event.getCode()==KeyCode.NUMPAD2){onNum2Clicked(new ActionEvent());}
+        if(event.getCode()==KeyCode.DIGIT3||event.getCode()==KeyCode.NUMPAD3){onNum3Clicked(new ActionEvent());}
+        if(event.getCode()==KeyCode.DIGIT4||event.getCode()==KeyCode.NUMPAD4){onNum4Clicked(new ActionEvent());}
+        if(event.getCode()==KeyCode.DIGIT5||event.getCode()==KeyCode.NUMPAD5){onNum5Clicked(new ActionEvent());}
+        if(event.getCode()==KeyCode.DIGIT6||event.getCode()==KeyCode.NUMPAD6){onNum6Clicked(new ActionEvent());}
+        if(event.getCode()==KeyCode.DIGIT7||event.getCode()==KeyCode.NUMPAD7){onNum7Clicked(new ActionEvent());}
+        if(event.getCode()==KeyCode.DIGIT9||event.getCode()==KeyCode.NUMPAD9){onNum9Clicked(new ActionEvent());}
+        if(event.getCode()==KeyCode.MINUS||event.getCode()==KeyCode.SUBTRACT){onBtnMinusClicked(new ActionEvent());}
+        if(event.getCode()==KeyCode.DIVIDE||event.getCode()==KeyCode.SLASH){onBtnDivideClicked(new ActionEvent());}
+        if(event.getCode()==KeyCode.PERIOD||event.getCode()==KeyCode.DECIMAL){onBtnDotClicked(new ActionEvent());}
+        if(event.getCode()==KeyCode.BACK_SPACE){onBtnDeleteClicked(new ActionEvent());}
+        if(event.getCode()==KeyCode.ENTER){onBtnEqualClicked(new ActionEvent());}
+
+    }
+
+    @FXML
+    private void onKeyTyped(KeyEvent event){
+        if(event.getCharacter().equals(new String("+"))){
+            onBtnPlusClicked(new ActionEvent());
+        }
+        if(event.getCharacter().equals(new String("*"))){
+            onBtnMultiplyClicked(new ActionEvent());
+        }
+        if(event.getCharacter().equals(new String("8"))){
+            onNum8Clicked(new ActionEvent());
+        }
+        if(event.getCharacter().equals(new String("="))){
+            onBtnEqualClicked(new ActionEvent());
+        }
+        if(event.getCharacter().equals(new String("("))){
+            onBtnLeftBracClicked(new ActionEvent());
+        }
+        if(event.getCharacter().equals(new String(")"))){
+            onBtnRightBracClicked(new ActionEvent());
+        }
     }
 
 
     private boolean isExpressionLegal(){
-        /*if(mainText.getText().length() != 0){
+        if(mainText.getText().length() != 0){
             Lexer l = new Lexer(mainText.getText());
             try {
                 for(Token t : l.getTokens()){
@@ -235,7 +315,7 @@ public class Controller implements Initializable {
             catch(LexicalException e){
                 return false;
             }
-        }*/
+        }
         return true;
     }
 
