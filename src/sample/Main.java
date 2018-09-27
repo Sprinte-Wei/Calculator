@@ -49,14 +49,22 @@ public class Main extends Application {
 
                 Calculator c = new Calculator();
 
-                System.out.println("Outcome: " + c.calculate(tokens));
+                double outcome = c.calculate(tokens);
+
+                if((int)outcome == outcome){
+                    System.out.println("Outcome: " + (int)outcome);
+                }
+                else {
+                    System.out.println("Outcome: " + outcome);
+                }
+
 
             }
             catch (LexicalException e) {
-                System.out.println(e.getMessage());
+                System.err.println(e.getMessage());
             }
             catch (SyntaxException e) {
-                System.out.println(e.getMessage());
+                System.err.println(e.getMessage());
             }
 
         }

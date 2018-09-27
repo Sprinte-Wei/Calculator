@@ -1,5 +1,7 @@
 package sample.lexer;
 
+import sample.parser.State;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,12 +19,7 @@ public class Lexer {
 
     public List<Token> getTokens() throws LexicalException{
         while (currentCharPosition != input.length()){
-            //try{
-                nextToken();
-            //}
-            //catch (LexicalException e){
-                //System.out.println(e.getMessage());
-            //}
+            nextToken();
         }
         return tokens;
     }
@@ -54,32 +51,49 @@ public class Lexer {
         else if(input.charAt(currentCharPosition) == '*'){
             tokens.add(new Token(TokenType.MULTIPLY, "*", ++currentCharPosition));
         }
-        else {
+        else if(isTheStartOfNumber(input.charAt(currentCharPosition))){
             tokens.add(readNumber());
+        }
+        else {
+            throw new LexicalException(currentCharPosition+1);
         }
     }
 
     private Token readNumber() throws LexicalException{
         StringBuilder s = new StringBuilder();
-        s.append(input.charAt(currentCharPosition++));
+        char startChar = input.charAt(currentCharPosition++);
+        s.append(startChar);
         int location = currentCharPosition;
         while (true){
+            if(startChar == '0'){
+
+            }
+            //if(isLegalCharInNum(input.charAt()))
+            //if(isLegalCharInNum(input))
             if(currentCharPosition == input.length() || !isLegalCharInNum(input.charAt(currentCharPosition))){
-                if(isLegalNum(s.toString())){
+                return new Token(TokenType.NUMBER, s.toString(), location);
+                /*if(isLegalNum(s.toString())){
                     return new Token(TokenType.NUMBER, s.toString(), location);
                 }
                 else {
                     throw new LexicalException(location);
-                }
+                }*/
             }
             else {
                 s.append(input.charAt(currentCharPosition++));
+                if(!isLegalNum(s.toString())){
+                    throw new LexicalException(currentCharPosition);
+                }
             }
         }
     }
 
     private boolean isLegalCharInNum(char c){
         return (c >= '0' && c <= '9') || c == '.';
+    }
+
+    private boolean isTheStartOfNumber(char c){
+        return (c >= '0' && c <= '9');
     }
 
     private boolean isLegalNum(String s){
