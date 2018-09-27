@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.calculation.Calculator;
 import sample.lexer.Lexer;
 import sample.lexer.LexicalException;
 import sample.lexer.Token;
@@ -40,20 +41,26 @@ public class Main extends Application {
                 for (Token t : tokens) {
                     System.out.println(t);
                 }
-
-
-
                 //语法分析
                 Parser p = new Parser();
-                p.readString(l.getTokens());
-                System.out.println("输入句子形式正确");
+
+                if (p.readString(tokens)){
+                    System.out.println("输入句子形式正确");
+                }
+                else {
+                    System.out.println("输入句子形式错误");
+                }
+                Calculator c = new Calculator();
+                for(String s : c.transferToPostfix(tokens)){
+                    System.out.println(s);
+                }
+                System.out.println(c.calculate(tokens));
+
             }
-            catch (LexicalException e)
-            {
+            catch (LexicalException e) {
                 System.out.println(e.getMessage());
             }
-            catch (ParserException e)
-            {
+            catch (ParserException e) {
                 System.out.println(e.getMessage());
             }
 

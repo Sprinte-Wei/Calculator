@@ -41,7 +41,12 @@ public class Lexer {
             tokens.add(new Token(TokenType.PLUS, "+", ++currentCharPosition));
         }
         else if(input.charAt(currentCharPosition) == '-'){
-            tokens.add(new Token(TokenType.MINUS, "-", ++currentCharPosition));
+            if(currentCharPosition==0 || input.charAt(currentCharPosition-1) == '('){
+                tokens.add(readNumber());
+            }
+            else {
+                tokens.add(new Token(TokenType.MINUS, "-", ++currentCharPosition));
+            }
         }
         else if(input.charAt(currentCharPosition) == '/'){
             tokens.add(new Token(TokenType.DIVIDE, "/", ++currentCharPosition));
@@ -78,8 +83,8 @@ public class Lexer {
     }
 
     private boolean isLegalNum(String s){
-        String regex1 = "[1-9]([0-9]*\\.{0,1}[0-9]+){0,1}"; //匹配整数64616  浮点数8161.15
-        String regex2 = "0(\\.[0-9]+){0,1}"; //匹配0   浮点数0.53215  及0.0
+        String regex1 = "-{0,1}[1-9]([0-9]*\\.{0,1}[0-9]+){0,1}"; //匹配整数64616  浮点数8161.15
+        String regex2 = "-{0,1}0(\\.[0-9]+){0,1}"; //匹配0   浮点数0.53215  及0.0
         if(s.matches(regex1) || s.matches(regex2)){
             return true;
         }
