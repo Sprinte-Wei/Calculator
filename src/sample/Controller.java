@@ -93,44 +93,39 @@ public class Controller implements Initializable {
             }
         });
 
-        /*mainText.setOnKeyTyped(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                //System.out.println(KeyCode.DIGIT1);
-                String s = event.getCharacter();
-                System.out.println(s);
-            }
-        });*/
-
     }
+
 
     @FXML
     private void onNum0Clicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + "0");
+        String tempText = mainText.getText() + "0";
+        if(isExpressionLegal(tempText)){
+            mainText.setText(tempText);
             length++;
         }
     }
 
     @FXML
     private void onNum1Clicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + "1");
+        String tempText=mainText.getText() + "1";
+        if(isExpressionLegal(tempText)){
+            mainText.setText(tempText);
             length++;
         }
     }
 
     @FXML
     private void onNum2Clicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + "2");
+        String tempText=mainText.getText() + "2";
+        if(isExpressionLegal(tempText)){
+            mainText.setText(tempText);
             length++;
         }
     }
 
     @FXML
     private void onNum3Clicked(ActionEvent event){
-        if(isExpressionLegal()){
+        if(isExpressionLegal(mainText.getText() + "3")){
             mainText.setText(mainText.getText() + "3");
             length++;
         }
@@ -138,7 +133,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void onNum4Clicked(ActionEvent event){
-        if(isExpressionLegal()){
+        if(isExpressionLegal(mainText.getText() + "4")){
             mainText.setText(mainText.getText() + "4");
             length++;
         }
@@ -146,7 +141,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void onNum5Clicked(ActionEvent event){
-        if(isExpressionLegal()){
+        if(isExpressionLegal(mainText.getText() + "5")){
             mainText.setText(mainText.getText() + "5");
             length++;
         }
@@ -154,7 +149,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void onNum6Clicked(ActionEvent event){
-        if(isExpressionLegal()){
+        if(isExpressionLegal(mainText.getText() + "6")){
             mainText.setText(mainText.getText() + "6");
             length++;
         }
@@ -162,7 +157,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void onNum7Clicked(ActionEvent event){
-        if(isExpressionLegal()){
+        if(isExpressionLegal(mainText.getText() + "7")){
             mainText.setText(mainText.getText() + "7");
             length++;
         }
@@ -170,7 +165,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void onNum8Clicked(ActionEvent event){
-        if(isExpressionLegal()){
+        if(isExpressionLegal(mainText.getText() + "8")){
             mainText.setText(mainText.getText() + "8");
             length++;
         }
@@ -178,7 +173,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void onNum9Clicked(ActionEvent event){
-        if(isExpressionLegal()){
+        if(isExpressionLegal(mainText.getText() + "9")){
             mainText.setText(mainText.getText() + "9");
             length++;
         }
@@ -186,7 +181,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void onBtnDotClicked(ActionEvent event){
-        if(isExpressionLegal()){
+        if(isExpressionLegal(mainText.getText() + ".")){
             mainText.setText(mainText.getText() + ".");
             length++;
         }
@@ -194,7 +189,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void onBtnDivideClicked(ActionEvent event){
-        if(isExpressionLegal()){
+        if(isExpressionLegal(mainText.getText() + "/")){
             mainText.setText(mainText.getText() + "/");
             length++;
         }
@@ -202,7 +197,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void onBtnPlusClicked(ActionEvent event){
-        if(isExpressionLegal()){
+        if(isExpressionLegal(mainText.getText() + "+")){
             mainText.setText(mainText.getText() + "+");
             length++;
         }
@@ -210,7 +205,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void onBtnMinusClicked(ActionEvent event){
-        if(isExpressionLegal()){
+        if(isExpressionLegal(mainText.getText() + "-")){
             mainText.setText(mainText.getText() + "-");
             length++;
         }
@@ -218,7 +213,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void onBtnMultiplyClicked(ActionEvent event){
-        if(isExpressionLegal()){
+        if(isExpressionLegal(mainText.getText() + "*")){
             mainText.setText(mainText.getText() + "*");
             length++;
         }
@@ -226,7 +221,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void onBtnLeftBracClicked(ActionEvent event){
-        if(isExpressionLegal()){
+        if(isExpressionLegal(mainText.getText() + "(")){
             mainText.setText(mainText.getText() + "(");
             length++;
         }
@@ -234,7 +229,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void onBtnRightBracClicked(ActionEvent event){
-        if(isExpressionLegal()){
+        if(isExpressionLegal(mainText.getText() + ")")){
             mainText.setText(mainText.getText() + ")");
             length++;
         }
@@ -243,9 +238,8 @@ public class Controller implements Initializable {
     @FXML
     private void onBtnEqualClicked(ActionEvent event){
         double result=0;
-
+        //Waiting to be completed
         resultText.setText(result+"");
-
     }
 
     @FXML
@@ -304,9 +298,9 @@ public class Controller implements Initializable {
     }
 
 
-    private boolean isExpressionLegal(){
-        if(mainText.getText().length() != 0){
-            Lexer l = new Lexer(mainText.getText());
+    private boolean isExpressionLegal(String s){
+        /*if(s.length() != 0){
+            Lexer l = new Lexer(s);
             try {
                 for(Token t : l.getTokens()){
                     System.out.println(t);
@@ -315,7 +309,7 @@ public class Controller implements Initializable {
             catch(LexicalException e){
                 return false;
             }
-        }
+        }*/
         return true;
     }
 
