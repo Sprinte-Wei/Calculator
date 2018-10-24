@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -13,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane fx:id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" onKeyTyped="#onKeyTyped" prefHeight="680.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <GridPane fx:id="gridPane" hgap="5.0" layoutY="341.0" prefHeight="337.0" prefWidth="360.0" vgap="5.0">
         <columnConstraints>
@@ -192,14 +191,17 @@
             </JFXButton>
          </children>
       </GridPane>
-      <Pane layoutX="10.0" layoutY="137.0" prefHeight="193.0" prefWidth="340.0" style="-fx-border-color: grey; -fx-border-width: 5;">
+      <Pane layoutX="10.0" layoutY="137.0" onKeyPressed="#onKeyPressed" onKeyTyped="#onKeyTyped" prefHeight="193.0" prefWidth="340.0" style="-fx-border-color: grey; -fx-border-width: 5;">
          <children>
-            <JFXTextArea fx:id="mainText" editable="false" focusColor="#405aa800" layoutX="8.0" layoutY="26.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="113.0" prefWidth="325.0" promptText="0" unFocusColor="#4d4d4d00" wrapText="true">
+            <JFXTextField fx:id="mainText" alignment="CENTER_RIGHT" editable="false" focusColor="#405aa800" layoutX="8.0" layoutY="8.0" prefHeight="130.0" prefWidth="325.0" promptText="0" unFocusColor="#4d4d4d00">
                <font>
-                  <Font name="Arial Bold" size="40.0" />
+                  <Font name="Arial Bold" size="30.0" />
                </font>
-            </JFXTextArea>
-            <JFXTextField editable="false" focusColor="#405aa800" layoutX="8.0" layoutY="139.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="325.0" promptText="0" unFocusColor="#4d4d4d00">
+               <padding>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </padding>
+            </JFXTextField>
+            <JFXTextField fx:id="resultText" alignment="CENTER_RIGHT" editable="false" focusColor="#405aa800" layoutX="8.0" layoutY="139.0" prefHeight="40.0" prefWidth="325.0" promptText="0" unFocusColor="#4d4d4d00">
                <font>
                   <Font name="Arial Bold" size="45.0" />
                </font>
