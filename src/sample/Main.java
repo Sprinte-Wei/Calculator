@@ -61,10 +61,10 @@ public class Main extends Application {
 
             }
             catch (LexicalException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
             catch (SyntaxException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
 
         }

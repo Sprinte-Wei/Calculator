@@ -1,7 +1,5 @@
 package sample.lexer;
 
-import sample.parser.State;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +37,12 @@ public class Lexer {
         }
         else if(input.charAt(currentCharPosition) == '-'){
             if(currentCharPosition==0 || input.charAt(currentCharPosition-1) == '('){
-                tokens.add(readNumber());
+                if(currentCharPosition+1 != input.length() && isDigit(input.charAt(currentCharPosition+1))){
+                    tokens.add(readNumber());
+                }
+                else {
+                    tokens.add(new Token(TokenType.MINUS, "-", ++currentCharPosition));
+                }
             }
             else {
                 tokens.add(new Token(TokenType.MINUS, "-", ++currentCharPosition));
@@ -51,7 +54,7 @@ public class Lexer {
         else if(input.charAt(currentCharPosition) == '*'){
             tokens.add(new Token(TokenType.MULTIPLY, "*", ++currentCharPosition));
         }
-        else if(isTheStartOfNumber(input.charAt(currentCharPosition))){
+        else if(isDigit(input.charAt(currentCharPosition))){
             tokens.add(readNumber());
         }
         else {
@@ -62,29 +65,48 @@ public class Lexer {
     private Token readNumber() throws LexicalException{
         StringBuilder s = new StringBuilder();
         char startChar = input.charAt(currentCharPosition++);
+        /*if(startChar == '-'){
+            char nextChar = input.charAt(currentCharPosition);
+            if(!isDigit(nextChar)){
+                throw new LexicalException(currentCharPosition+1);
+            }
+        }*/
         s.append(startChar);
         int location = currentCharPosition;
         while (true){
-            if(startChar == '0'){
-
-            }
-            //if(isLegalCharInNum(input.charAt()))
-            //if(isLegalCharInNum(input))
-            if(currentCharPosition == input.length() || !isLegalCharInNum(input.charAt(currentCharPosition))){
-                return new Token(TokenType.NUMBER, s.toString(), location);
-                /*if(isLegalNum(s.toString())){
+            if(currentCharPosition == input.length()){
+                if(isLegalNum(s.toString())){
                     return new Token(TokenType.NUMBER, s.toString(), location);
                 }
-                else {
-                    throw new LexicalException(location);
-                }*/
+                throw new LexicalException(currentCharPosition);
+            }
+            if(!isLegalCharInNum(input.charAt(currentCharPosition)) && isLegalNum(s.toString())){
+                return new Token(TokenType.NUMBER, s.toString(), location);
+            }
+            else if(!s.toString().equals("-") && !isLegalNum(s.toString()) && !isRightStepOfNum(s.toString())){
+                throw new LexicalException(currentCharPosition);
+            }
+            else {
+                s.append(input.charAt(currentCharPosition++));
+            }
+            /*if(!isLegalNum(s.toString())){
+                throw new LexicalException(currentCharPosition);
+            }
+            else if(isOperator(input.charAt(currentCharPosition))){
+                return new Token(TokenType.NUMBER, s.toString(), location);
+            }
+            else {
+                s.append(input.charAt(currentCharPosition++));
+            }
+            /*if(currentCharPosition == input.length() || !isLegalCharInNum(input.charAt(currentCharPosition))){
+                return new Token(TokenType.NUMBER, s.toString(), location);
             }
             else {
                 s.append(input.charAt(currentCharPosition++));
                 if(!isLegalNum(s.toString())){
                     throw new LexicalException(currentCharPosition);
                 }
-            }
+            }*/
         }
     }
 
@@ -92,13 +114,36 @@ public class Lexer {
         return (c >= '0' && c <= '9') || c == '.';
     }
 
-    private boolean isTheStartOfNumber(char c){
+    private boolean isDigit(char c){
         return (c >= '0' && c <= '9');
+    }
+
+    private boolean isOperator(char c){
+        switch (c){
+            case '+':
+            case '-':
+            case '*':
+            case '/':
+            case '(':
+            case ')':
+                return true;
+            default:
+                return false;
+        }
     }
 
     private boolean isLegalNum(String s){
         String regex1 = "-{0,1}[1-9]([0-9]*\\.{0,1}[0-9]+){0,1}"; //匹配整数64616  浮点数8161.15
         String regex2 = "-{0,1}0(\\.[0-9]+){0,1}"; //匹配0   浮点数0.53215  及0.0
+        if(s.matches(regex1) || s.matches(regex2)){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isRightStepOfNum(String s){
+        String regex1 = "-{0,1}[1-9][0-9]*\\."; //匹配整数64616  浮点数8161.15
+        String regex2 = "-{0,1}0\\."; //匹配0   浮点数0.53215  及0.0
         if(s.matches(regex1) || s.matches(regex2)){
             return true;
         }
