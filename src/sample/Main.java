@@ -5,13 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.calculation.Calculator;
 import sample.lexer.Lexer;
 import sample.lexer.LexicalException;
 import sample.lexer.Token;
 import sample.parser.Parser;
-import sample.parser.SyntaxException;
+import sample.parser.ParserException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -40,30 +40,20 @@ public class Main extends Application {
                 for (Token t : tokens) {
                     System.out.println(t);
                 }
+
+
+
                 //语法分析
                 Parser p = new Parser();
-
-                p.readString(tokens);
-
-                System.out.println("This is an legal statement.");
-
-                Calculator c = new Calculator();
-
-                double outcome = c.calculate(tokens);
-
-                if((int)outcome == outcome){
-                    System.out.println("Outcome: " + (int)outcome);
-                }
-                else {
-                    System.out.println("Outcome: " + outcome);
-                }
-
-
+                p.readString(l.getTokens());
+                System.out.println("输入句子形式正确");
             }
-            catch (LexicalException e) {
+            catch (LexicalException e)
+            {
                 System.out.println(e.getMessage());
             }
-            catch (SyntaxException e) {
+            catch (ParserException e)
+            {
                 System.out.println(e.getMessage());
             }
 

@@ -47,14 +47,14 @@ public class Parser {
         }
     }
 
-    public void readString (List<Token> tokens)throws SyntaxException
+    public void readString (List<Token> tokens)throws ParserException
     {
         //建立token状态栈
-        Stack<String> stringStack = new Stack<>();
+        Stack<String> stringStack = new Stack<String>();
         stringStack.push("0");
 
         //建立token队列
-        Queue<Token> tokenQueue = new LinkedList<>();
+        Queue<Token> tokenQueue = new LinkedList<Token>();
         for(int i = 0; i < tokens.size(); i++)
         {
             tokenQueue.offer(tokens.get(i));
@@ -83,7 +83,7 @@ public class Parser {
 
             //通过表内容来进行处理
             State nextState = sTable[state][symbol];
-            if(nextState.getState() == -1) throw new SyntaxException(tokenQueue.peek().getLocation());//输入形式错误
+            if(nextState.getState() == -1) throw new ParserException(tokenQueue.peek().getLocation());//输入形式错误
             else if(nextState.isR())//规约状态
             {
                 for(int i = 0; i < rs[nextState.getState() - 1] * 2; i++)
