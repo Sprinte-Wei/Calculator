@@ -31,7 +31,7 @@ public class Main extends Application {
         launch(args);
 
         //Added by 魏春光
-        Scanner sc = new Scanner(System.in);
+        /*Scanner sc = new Scanner(System.in);
         while (true){
             try {
                 //词法分析
@@ -45,7 +45,7 @@ public class Main extends Application {
 
                 p.readString(tokens);
 
-                System.out.println("This is an legal statement.");
+                System.out.println("This is a legal statement.");
 
                 Calculator c = new Calculator();
 
@@ -67,7 +67,7 @@ public class Main extends Application {
                 System.out.println(e.getMessage());
             }
 
-        }
+        }*/
 
     }
 }
