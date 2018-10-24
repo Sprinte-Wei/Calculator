@@ -74,17 +74,20 @@ public class Lexer {
         s.append(startChar);
         int location = currentCharPosition;
         while (true){
-            if(currentCharPosition == input.length()){
+            /*if(currentCharPosition == input.length()){
                 if(isLegalNum(s.toString())){
                     return new Token(TokenType.NUMBER, s.toString(), location);
                 }
-                throw new LexicalException(currentCharPosition);
-            }
-            if(!isLegalCharInNum(input.charAt(currentCharPosition)) && isLegalNum(s.toString())){
+                throw new LexicalException(currentCharPosition+1);
+            }*/
+            if((currentCharPosition == input.length() || !isLegalCharInNum(input.charAt(currentCharPosition))) && isLegalNum(s.toString())){
                 return new Token(TokenType.NUMBER, s.toString(), location);
             }
             else if(!s.toString().equals("-") && !isLegalNum(s.toString()) && !isRightStepOfNum(s.toString())){
                 throw new LexicalException(currentCharPosition);
+            }
+            else if(currentCharPosition == input.length()){
+                throw new LexicalException(currentCharPosition+1);
             }
             else {
                 s.append(input.charAt(currentCharPosition++));

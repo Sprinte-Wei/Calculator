@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" onKeyTyped="#onKeyTyped" prefHeight="680.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane fx:id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" onKeyTyped="#onKeyTyped" prefHeight="680.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <GridPane fx:id="gridPane" hgap="5.0" layoutY="341.0" prefHeight="337.0" prefWidth="360.0" vgap="5.0">
         <columnConstraints>
@@ -193,7 +193,7 @@
       </GridPane>
       <Pane layoutX="10.0" layoutY="137.0" onKeyPressed="#onKeyPressed" onKeyTyped="#onKeyTyped" prefHeight="193.0" prefWidth="340.0" style="-fx-border-color: grey; -fx-border-width: 5;">
          <children>
-            <JFXTextField fx:id="mainText" alignment="CENTER_RIGHT" editable="false" focusColor="#405aa800" layoutX="8.0" layoutY="8.0" prefHeight="130.0" prefWidth="325.0" promptText="0" unFocusColor="#4d4d4d00">
+            <JFXTextField fx:id="mainText" alignment="CENTER_RIGHT" editable="false" focusColor="#405aa800" layoutX="8.0" layoutY="8.0" prefHeight="130.0" prefWidth="325.0" unFocusColor="#4d4d4d00">
                <font>
                   <Font name="Arial Bold" size="30.0" />
                </font>
