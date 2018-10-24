@@ -22,13 +22,15 @@ import sample.lexer.Token;
 import sample.parser.Parser;
 import sample.parser.SyntaxException;
 
-import java.awt.*;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.net.URL;
+import java.util.regex.Pattern;
 
 public class Controller implements Initializable {
-    //int length=0;
+    int length=0;
+
+
     @FXML
     private Pane mainContainer;
     @FXML
@@ -80,10 +82,10 @@ public class Controller implements Initializable {
 
     private StringBuilder currentExpression;
 
-    ActionEvent e;
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        mainText.setText("0");
 
         gridPane.prefWidthProperty().bind(mainContainer.widthProperty());
 
@@ -91,7 +93,7 @@ public class Controller implements Initializable {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if(mainText.getText().length()>=18) {
-                    mainText.setFont(new Font("Arial Bold", 20.0));
+                    mainText.setFont(new Font("Arial Bold", 15.0));
                 }
                 else{
                     mainText.setFont(new Font("Arial Bold", 30.0));
@@ -103,147 +105,240 @@ public class Controller implements Initializable {
 
     @FXML
     private void onNum0Clicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + "0");
+        if(mainText.getText().equals("0")){
+            mainText.setText("");
+        }
+        StringBuilder s = new StringBuilder(mainText.getText());
+        s.append('0');
+        if(isExpressionLegal(s.toString())){
+            mainText.setText(s.toString());
         }
     }
 
     @FXML
     private void onNum1Clicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + "1");
+        if(mainText.getText().equals("0")){
+            mainText.setText("");
+        }
+        StringBuilder s = new StringBuilder(mainText.getText());
+        s.append('1');
+        if(isExpressionLegal(s.toString())){
+            mainText.setText(s.toString());
         }
     }
 
     @FXML
     private void onNum2Clicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + "2");
+        if(mainText.getText().equals("0")){
+            mainText.setText("");
+        }
+        StringBuilder s = new StringBuilder(mainText.getText());
+        s.append('2');
+        if(isExpressionLegal(s.toString())){
+            mainText.setText(s.toString());
         }
     }
 
     @FXML
     private void onNum3Clicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + "3");
+        if(mainText.getText().equals("0")){
+            mainText.setText("");
+        }
+        StringBuilder s = new StringBuilder(mainText.getText());
+        s.append('3');
+        if(isExpressionLegal(s.toString())){
+            mainText.setText(s.toString());
         }
     }
 
     @FXML
     private void onNum4Clicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + "4");
+        if(mainText.getText().equals("0")){
+            mainText.setText("");
+        }
+        StringBuilder s = new StringBuilder(mainText.getText());
+        s.append('4');
+        if(isExpressionLegal(s.toString())){
+            mainText.setText(s.toString());
         }
     }
 
     @FXML
     private void onNum5Clicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + "5");
+        if(mainText.getText().equals("0")){
+            mainText.setText("");
+        }
+        StringBuilder s = new StringBuilder(mainText.getText());
+        s.append('5');
+        if(isExpressionLegal(s.toString())){
+            mainText.setText(s.toString());
         }
     }
 
     @FXML
     private void onNum6Clicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + "6");
+        if(mainText.getText().equals("0")){
+            mainText.setText("");
+        }
+        StringBuilder s = new StringBuilder(mainText.getText());
+        s.append('6');
+        if(isExpressionLegal(s.toString())){
+            mainText.setText(s.toString());
         }
     }
 
     @FXML
     private void onNum7Clicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + "7");
+        if(mainText.getText().equals("0")){
+            mainText.setText("");
+        }
+        StringBuilder s = new StringBuilder(mainText.getText());
+        s.append('7');
+        if(isExpressionLegal(s.toString())){
+            mainText.setText(s.toString());
         }
     }
 
     @FXML
     private void onNum8Clicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + "8");
+        if(mainText.getText().equals("0")){
+            mainText.setText("");
+        }
+        StringBuilder s = new StringBuilder(mainText.getText());
+        s.append('8');
+        if(isExpressionLegal(s.toString())){
+            mainText.setText(s.toString());
         }
     }
 
     @FXML
     private void onNum9Clicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + "9");
+        if(mainText.getText().equals("0")){
+            mainText.setText("");
+        }
+        StringBuilder s = new StringBuilder(mainText.getText());
+        s.append('9');
+        if(isExpressionLegal(s.toString())){
+            mainText.setText(s.toString());
         }
     }
 
     @FXML
     private void onBtnDotClicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + ".");
+        StringBuilder s = new StringBuilder(mainText.getText());
+        s.append('.');
+        if(isExpressionLegal(s.toString())){
+            mainText.setText(s.toString());
         }
     }
 
     @FXML
     private void onBtnDivideClicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + "/");
+        StringBuilder s = new StringBuilder(mainText.getText());
+        s.append('/');
+        if(isExpressionLegal(s.toString())){
+            mainText.setText(s.toString());
         }
     }
 
     @FXML
     private void onBtnPlusClicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + "+");
+        StringBuilder s = new StringBuilder(mainText.getText());
+        s.append('+');
+        if(isExpressionLegal(s.toString())){
+            mainText.setText(s.toString());
         }
     }
 
     @FXML
     private void onBtnMinusClicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + "-");
+
+        StringBuilder s = new StringBuilder(mainText.getText());
+        s.append('-');
+        if(isExpressionLegal(s.toString())){
+            mainText.setText(s.toString());
         }
     }
 
     @FXML
     private void onBtnMultiplyClicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + "*");
+        StringBuilder s = new StringBuilder(mainText.getText());
+        s.append('*');
+        if(isExpressionLegal(s.toString())){
+            mainText.setText(s.toString());
         }
     }
 
     @FXML
     private void onBtnLeftBracClicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + "(");
+        if(mainText.getText().equals("0")){
+            mainText.setText("");
+        }
+        StringBuilder s = new StringBuilder(mainText.getText());
+        s.append('(');
+        if(isExpressionLegal(s.toString())){
+            mainText.setText(s.toString());
         }
     }
 
     @FXML
     private void onBtnRightBracClicked(ActionEvent event){
-        if(isExpressionLegal()){
-            mainText.setText(mainText.getText() + ")");
+        if(mainText.getText().equals("0")){
+            mainText.setText("");
+        }
+        StringBuilder s = new StringBuilder(mainText.getText());
+        s.append(')');
+        if(isExpressionLegal(s.toString())){
+            mainText.setText(s.toString());
         }
     }
 
+
+
+
     @FXML
     private void onBtnEqualClicked(ActionEvent event){
-        double result=0;
 
-        resultText.setText(result+"");
+        if(canCalculate(mainText.getText())){
+            Calculator c = new Calculator();
+
+            double outcome = c.calculate(tokens);
+
+            if((int)outcome == outcome){
+                System.out.println("Outcome: " + (int)outcome);
+            }
+            else {
+                System.out.println("Outcome: " + outcome);
+            }
+
+            resultText.setText(outcome+"");
+            mainText.setText("0");
+        }
 
     }
 
     @FXML
     private void onBtnDeleteClicked(ActionEvent event){
+        if(mainText.getText().length() == 1){
+            mainText.setText("0");
+            return;
+        }
         if(mainText.getText().length() != 0){
             mainText.setText(mainText.getText().substring(0, mainText.getText().length() - 1));
+            length--;
         }
     }
 
     @FXML
     private void onBtnClearClicked(ActionEvent event){
-        mainText.setText("");
+        mainText.setText("0");
+        length=0;
     }
 
     @FXML
     private void onKeyPressed(KeyEvent event){
         if(event.getCode()==KeyCode.DIGIT0||event.getCode()==KeyCode.NUMPAD0 ){onNum0Clicked(new ActionEvent());}
-        if(event.getCode()==KeyCode.DIGIT1||event.getCode()==KeyCode.NUMPAD1){onNum1Clicked(e);}
+        if(event.getCode()==KeyCode.DIGIT1||event.getCode()==KeyCode.NUMPAD1){onNum1Clicked(new ActionEvent());}
         if(event.getCode()==KeyCode.DIGIT2||event.getCode()==KeyCode.NUMPAD2){onNum2Clicked(new ActionEvent());}
         if(event.getCode()==KeyCode.DIGIT3||event.getCode()==KeyCode.NUMPAD3){onNum3Clicked(new ActionEvent());}
         if(event.getCode()==KeyCode.DIGIT4||event.getCode()==KeyCode.NUMPAD4){onNum4Clicked(new ActionEvent());}
@@ -268,7 +363,6 @@ public class Controller implements Initializable {
             onBtnMultiplyClicked(new ActionEvent());
         }
         if(event.getCharacter().equals("8")){
-            ActionEvent e = new ActionEvent();
             onNum8Clicked(new ActionEvent());
         }
         if(event.getCharacter().equals("=")){
@@ -284,7 +378,64 @@ public class Controller implements Initializable {
 
 
     private boolean isExpressionLegal(){
+        if(mainText.getText().length() != 0){
+            Lexer l = new Lexer(mainText.getText());
+            try {
+                for(Token t : l.getTokens()){
+                    System.out.println(t);
+                }
+            }
+            catch(LexicalException e){
+                return false;
+            }
+        }
+        return true;
+    }
 
+    private boolean isExpressionLegal(String s){
+        if(s == null || s.equals("")){
+            return false;
+        }
+        try{
+            Lexer l = new Lexer(s);
+            tokens = l.getTokens();
+            Parser p = new Parser();
+            p.readString(tokens);
+        }
+        catch(LexicalException e){
+            if(e.location == s.length() + 1){
+                return true;
+            }
+            return false;
+        }
+        catch (SyntaxException e){
+            if(e.location == s.length() + 1){
+                return true;
+            }
+            return false;
+
+        }
+        return true;
+    }
+
+    List<Token> tokens;
+    private boolean canCalculate(String s){
+        if(s == null || s.equals("")){
+            return false;
+        }
+        try{
+            Lexer l = new Lexer(s);
+            tokens = l.getTokens();
+            Parser p = new Parser();
+            p.readString(tokens);
+        }
+        catch(LexicalException e){
+            return false;
+        }
+        catch (SyntaxException e){
+            return false;
+
+        }
         return true;
     }
 
