@@ -8,6 +8,7 @@ public class Lexer {
     private List<Token> tokens;
     private String input;
     private int currentCharPosition;
+    private boolean canNege = true;
 
     public Lexer(String input){
         this.input = input;
@@ -19,6 +20,7 @@ public class Lexer {
         while (currentCharPosition != input.length()){
             //try{
                 nextToken();
+                canNege = false;
             //}
             //catch (LexicalException e){
                 //System.out.println(e.getMessage());
@@ -33,6 +35,7 @@ public class Lexer {
         }
         else if(input.charAt(currentCharPosition) == '('){
             tokens.add(new Token(TokenType.LEFT_PARENTHESIS, "(", ++currentCharPosition));
+            canNege = true;
         }
         else if(input.charAt(currentCharPosition) == ')'){
             tokens.add(new Token(TokenType.RIGHT_PARENTHESIS, ")", ++currentCharPosition));
@@ -41,6 +44,10 @@ public class Lexer {
             tokens.add(new Token(TokenType.PLUS, "+", ++currentCharPosition));
         }
         else if(input.charAt(currentCharPosition) == '-'){
+            if(canNege && input.charAt(currentCharPosition+1) != '+' && input.charAt(currentCharPosition+1) != '-' && input.charAt(currentCharPosition+1) != '*' && input.charAt(currentCharPosition+1) != '\\' && input.charAt(currentCharPosition+1) != '(' && input.charAt(currentCharPosition+1) != ')' )
+            {
+                tokens.add(readNumber());
+            }
             tokens.add(new Token(TokenType.MINUS, "-", ++currentCharPosition));
         }
         else if(input.charAt(currentCharPosition) == '/'){
@@ -78,8 +85,8 @@ public class Lexer {
     }
 
     private boolean isLegalNum(String s){
-        String regex1 = "[1-9]([0-9]*\\.{0,1}[0-9]+){0,1}"; //匹配整数64616  浮点数8161.15
-        String regex2 = "0(\\.[0-9]+){0,1}"; //匹配0   浮点数0.53215  及0.0
+        String regex1 = "-{0,1}[1-9]([0-9]*\\.{0,1}[0-9]+){0,1}"; //匹配整数64616  浮点数8161.15
+        String regex2 = "-{0,1}0(\\.[0-9]+){0,1}"; //匹配0   浮点数0.53215  及0.0
         if(s.matches(regex1) || s.matches(regex2)){
             return true;
         }
