@@ -67,8 +67,8 @@ public class Parser {
             }
             tokenQueue.offer(t);
         }
-        tokenQueue.offer(new Token(TokenType.END,"", (tokens.get(tokens.size()-1)).getLocation() + (tokens.get(tokens.size()-1).getValue()).length()));//补上句子结尾
-
+        if(tokens.size()!=0)tokenQueue.offer(new Token(TokenType.END,"", (tokens.get(tokens.size()-1)).getLocation() + (tokens.get(tokens.size()-1).getValue()).length()));//补上句子结尾
+        else throw new SyntaxException("please input the content");
         //开始读取
         int Vn = -1;//记录非终结符号，用于递归
         while (tokenQueue.peek() != null)

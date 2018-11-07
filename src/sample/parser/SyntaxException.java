@@ -9,4 +9,9 @@ public class SyntaxException extends Exception {
         this.location = location;
     }
 
+    public SyntaxException(String s)
+    {
+        super(s);
+    }
+
 }
