@@ -57,7 +57,15 @@ public class Parser {
         Queue<Token> tokenQueue = new LinkedList<>();
         for(int i = 0; i < tokens.size(); i++)
         {
-            tokenQueue.offer(tokens.get(i));
+            Token t = tokens.get(i);
+            if(t.getType().equals(TokenType.MINUS))
+            {
+                if(i == 0 || tokens.get(i-1).getType().equals(TokenType.LEFT_PARENTHESIS))
+                {
+                    tokenQueue.offer(new Token(TokenType.NUMBER,"0", t.getLocation()));//负号前面补零
+                }
+            }
+            tokenQueue.offer(t);
         }
         tokenQueue.offer(new Token(TokenType.END,"", (tokens.get(tokens.size()-1)).getLocation() + (tokens.get(tokens.size()-1).getValue()).length()));//补上句子结尾
 
