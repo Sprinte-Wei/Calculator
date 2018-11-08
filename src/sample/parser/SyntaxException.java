@@ -4,8 +4,8 @@ public class SyntaxException extends Exception {
 
     public int location;
 
-    public SyntaxException(int location) {
-        super("Syntax Error At " + location + "!(SyntaxException)");
+    public SyntaxException(int location, String s) {
+        super("Syntax Error At " + location + "!("+ s + ")");
         this.location = location;
     }
 

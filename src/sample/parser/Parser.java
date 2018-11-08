@@ -23,6 +23,7 @@ public class Parser {
             }
         }
 
+        //建立移入规约表
         sTable[0][0].setState(3);
         sTable[0][2].setState(2);
         sTable[0][4].setState(1);
@@ -45,6 +46,24 @@ public class Parser {
             sTable[7][i].setState(3);
             sTable[7][i].setR(true);
         }
+
+        //添加报错信息
+        sTable[0][1].setError("number is expected before operator");
+        sTable[0][3].setError("close parentheses more than open parentheses");
+        sTable[1][0].setError("operator is expected before number");
+        sTable[1][2].setError("operator is expected before open parenthese");
+        sTable[1][3].setError("operator is expected before close parenthese");
+        sTable[1][4].setError("operator is expected");
+        sTable[2][1].setError("number is expected before operator");
+        sTable[2][3].setError("close parentheses more than open parentheses");
+        sTable[2][5].setError("number is expected");
+        sTable[4][1].setError("number is expected before operator");
+        sTable[4][3].setError("close parentheses more than open parentheses");
+        sTable[4][5].setError("number is expected");
+        sTable[5][0].setError("operator is expected before number");
+        sTable[5][2].setError("operator is expected before open parenthese");
+        sTable[5][4].setError("operator is expected");
+        sTable[5][5].setError("close parenthese is expected");
     }
 
     public void readString (List<Token> tokens)throws SyntaxException
@@ -91,7 +110,7 @@ public class Parser {
 
             //通过表内容来进行处理
             State nextState = sTable[state][symbol];
-            if(nextState.getState() == -1) throw new SyntaxException(tokenQueue.peek().getLocation());//输入形式错误
+            if(nextState.getState() == -1) throw new SyntaxException(tokenQueue.peek().getLocation(), nextState.getError());//输入形式错误
             else if(nextState.isR())//规约状态
             {
                 for(int i = 0; i < rs[nextState.getState() - 1] * 2; i++)
