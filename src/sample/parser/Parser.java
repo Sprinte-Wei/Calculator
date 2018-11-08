@@ -52,13 +52,13 @@ public class Parser {
         sTable[0][3].setError("close parentheses more than open parentheses");
         sTable[1][0].setError("operator is expected before number");
         sTable[1][2].setError("operator is expected before open parenthese");
-        sTable[1][3].setError("operator is expected before close parenthese");
+        sTable[1][3].setError("close parentheses more than open parentheses");
         sTable[1][4].setError("operator is expected");
         sTable[2][1].setError("number is expected before operator");
-        sTable[2][3].setError("close parentheses more than open parentheses");
+        sTable[2][3].setError("number is expected between parentheses");
         sTable[2][5].setError("number is expected");
         sTable[4][1].setError("number is expected before operator");
-        sTable[4][3].setError("close parentheses more than open parentheses");
+        sTable[4][3].setError("number is expected before operator");
         sTable[4][5].setError("number is expected");
         sTable[5][0].setError("operator is expected before number");
         sTable[5][2].setError("operator is expected before open parenthese");
