@@ -3,6 +3,7 @@ package sample.calculation;
 import sample.lexer.Token;
 import sample.lexer.TokenType;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public class Calculator {
@@ -21,7 +22,8 @@ public class Calculator {
                 operand.push(Double.parseDouble(currentOperand));
             }
         }
-        return operand.pop();
+        BigDecimal b1 = new BigDecimal(Double.toString(operand.pop()));
+        return b1.doubleValue();
     }
 
     //中缀转后缀
@@ -75,13 +77,18 @@ public class Calculator {
     private double calculate(double num1,double num2,String operator){
         switch (operator){
             case "+":
-                return num1+num2;
+                return new BigDecimal(Double.toString(num1)).add(new BigDecimal(Double.toString(num2))).doubleValue();
+                //return num1+num2;
             case "-":
-                return num2-num1;
+                return new BigDecimal(Double.toString(num2)).subtract(new BigDecimal(Double.toString(num1))).doubleValue();
+                //return num2-num1;
             case "*":
-                return num1*num2;
+                return new BigDecimal(Double.toString(num1)).multiply(new BigDecimal(Double.toString(num2))).doubleValue();
+            //return num1*num2;
             case "/":
-                return num2/num1;
+                return new BigDecimal(Double.toString(num2)).divide(new BigDecimal(Double.toString(num1)), 10, BigDecimal.ROUND_HALF_UP).doubleValue();
+
+            //return num2/num1;
             default :
                 return 0;
         }
