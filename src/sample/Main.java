@@ -22,16 +22,19 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 360, 680));
+        /*Parent root = FXMLLoader.load(getClass().getResource("debug.fxml"));
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 400, 400));*/
         primaryStage.setResizable(false);
         primaryStage.show();
     }
 
 
     public static void main(String[] args) {
-        //launch(args);
+        launch(args);
 
         //Added by 魏春光
-        Scanner sc = new Scanner(System.in);
+        /*Scanner sc = new Scanner(System.in);
         while (true){
             try {
                 //词法分析
@@ -67,7 +70,7 @@ public class Main extends Application {
                 System.out.println(e.getMessage());
             }
 
-        }
+        }*/
 
     }
 }

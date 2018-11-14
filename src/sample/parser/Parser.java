@@ -58,7 +58,7 @@ public class Parser {
         sTable[2][3].setError("number is expected between parentheses");
         sTable[2][5].setError("number is expected");
         sTable[4][1].setError("number is expected before operator");
-        sTable[4][3].setError("number is expected before operator");
+        sTable[4][3].setError("number is expected before close parenthese");
         sTable[4][5].setError("number is expected");
         sTable[5][0].setError("operator is expected before number");
         sTable[5][2].setError("operator is expected before open parenthese");
