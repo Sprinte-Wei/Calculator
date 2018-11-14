@@ -22,6 +22,7 @@ import sample.lexer.Token;
 import sample.parser.Parser;
 import sample.parser.SyntaxException;
 
+import javax.swing.text.html.ImageView;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.net.URL;
@@ -79,6 +80,8 @@ public class Controller implements Initializable {
     private JFXTextField mainText;
     @FXML
     private JFXTextField resultText;
+    @FXML
+    private ImageView imageView;
 
     private StringBuilder currentExpression;
 
@@ -103,6 +106,10 @@ public class Controller implements Initializable {
 
     }
 
+    @FXML
+    private void onImageClicked(ActionEvent event){
+
+    }
     @FXML
     private void onNum0Clicked(ActionEvent event){
         if(mainText.getText().equals("0")){

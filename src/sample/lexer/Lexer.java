@@ -65,12 +65,6 @@ public class Lexer {
     private Token readNumber() throws LexicalException{
         StringBuilder s = new StringBuilder();
         char startChar = input.charAt(currentCharPosition++);
-        /*if(startChar == '-'){
-            char nextChar = input.charAt(currentCharPosition);
-            if(!isDigit(nextChar)){
-                throw new LexicalException(currentCharPosition+1);
-            }
-        }*/
         s.append(startChar);
         int location = currentCharPosition;
         while (true){
@@ -81,6 +75,13 @@ public class Lexer {
                 throw new LexicalException(currentCharPosition+1);
             }*/
             if((currentCharPosition == input.length() || !isLegalCharInNum(input.charAt(currentCharPosition))) && isLegalNum(s.toString())){
+                try{
+                    Double.parseDouble(s.toString());
+                    //Double.valueOf(s.toString());
+                }
+                catch (NumberFormatException e){
+                    throw new LexicalException(currentCharPosition);
+                }
                 return new Token(TokenType.NUMBER, s.toString(), location);
             }
             else if(!s.toString().equals("-") && !isLegalNum(s.toString()) && !isRightStepOfNum(s.toString())){

@@ -28,9 +28,8 @@ public class Calculator {
     private ArrayList<String> transferToPostfix(List<Token> tokens){
         ArrayList<String> postfix = new ArrayList<>();
         Stack<String> operators = new Stack<>();
-        Iterator<Token> it = tokens.iterator();
-        while (it.hasNext()){
-            Token t = it.next();
+        for(int i = 0; i < tokens.size(); i++){
+            Token t = tokens.get(i);
             if(t.getType() == TokenType.NUMBER){
                 postfix.add(t.getValue());
             }
@@ -44,6 +43,9 @@ public class Calculator {
                 operators.push("(");
             }
             else {
+                if(t.getType() == TokenType.MINUS && (i == 0 || tokens.get(i-1).getType() != TokenType.NUMBER)){
+                    postfix.add("0");
+                }
                 while (!operators.empty() && priority(operators.peek()) >= priority(t.getValue())){
                     postfix.add(operators.pop());
                 }
