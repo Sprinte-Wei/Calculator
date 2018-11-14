@@ -317,7 +317,9 @@ public class Controller implements Initializable {
             else {
                 System.out.println("Outcome: " + outcome);
             }
-
+            if(resultText.getText().length()>=10) {
+                resultText.setFont(new Font("Arial Bold", 30.0));
+            }
             resultText.setText(outcome+"");
             mainText.setText("0");
         }
