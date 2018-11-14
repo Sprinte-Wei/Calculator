@@ -290,9 +290,9 @@ public class Controller implements Initializable {
 
     @FXML
     private void onBtnRightBracClicked(ActionEvent event){
-        if(mainText.getText().equals("0")){
-            mainText.setText("");
-        }
+//        if(mainText.getText().equals("0")){
+//            mainText.setText("");
+//        }
         StringBuilder s = new StringBuilder(mainText.getText());
         s.append(')');
         if(isExpressionLegal(s.toString())){
@@ -339,6 +339,7 @@ public class Controller implements Initializable {
     @FXML
     private void onBtnClearClicked(ActionEvent event){
         mainText.setText("0");
+        resultText.setText("0");
         length=0;
     }
 
