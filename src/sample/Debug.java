@@ -35,6 +35,12 @@ public class Debug {
             p.readString(tokens);
             output.setText(output.getText() + "This is a legal statement.\n");
             Calculator c = new Calculator();
+            List<String> postfix = c.transferToPostfix(tokens);
+            StringBuilder s = new StringBuilder();
+            for(String s1 : postfix){
+                s.append(s1);
+            }
+            output.setText(output.getText() + "Suffix representation: " + s.toString() + "\n");
             double outcome = c.calculate(tokens);
             output.setText(output.getText() + "Outcome: " + outcome + "\n");
         }
@@ -43,6 +49,9 @@ public class Debug {
         }
         catch (SyntaxException e) {
             output.setText(output.getText() + e.getMessage() + "\n");
+        }
+        catch (ArithmeticException e){
+            output.setText(output.getText() + "No lexical and syntax exception, but 0 cannot be divided" + "\n");
         }
     }
 }
