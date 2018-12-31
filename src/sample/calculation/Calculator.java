@@ -27,7 +27,7 @@ public class Calculator {
     }
 
     //中缀转后缀
-    private ArrayList<String> transferToPostfix(List<Token> tokens){
+    public ArrayList<String> transferToPostfix(List<Token> tokens){
         ArrayList<String> postfix = new ArrayList<>();
         Stack<String> operators = new Stack<>();
         for(int i = 0; i < tokens.size(); i++){

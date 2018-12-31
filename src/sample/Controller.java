@@ -309,18 +309,37 @@ public class Controller implements Initializable {
         if(canCalculate(mainText.getText())){
             Calculator c = new Calculator();
 
-            double outcome = c.calculate(tokens);
+            double outcome = 0.0;
+
+            try{
+                outcome = c.calculate(tokens);
+            }
+            catch (ArithmeticException e){
+                resultText.setText("/ by zero");
+                return;
+            }
 
             if((int)outcome == outcome){
                 System.out.println("Outcome: " + (int)outcome);
+                resultText.setText((int)outcome+"");
             }
             else {
                 System.out.println("Outcome: " + outcome);
+                String s = outcome+"";
+                String result = s;
+                if(s.length()>=12) {
+                    if(s.contains("E")){
+                        int num = s.indexOf("E");
+                        result=s.substring(0,11-(s.length()-num))+s.substring(num);
+                    }
+                    else{
+                        result = s.substring(0,11);
+                    }
+
+                }
+                resultText.setText(result);
             }
-            if(resultText.getText().length()>=10) {
-                resultText.setFont(new Font("Arial Bold", 30.0));
-            }
-            resultText.setText(outcome+"");
+
             mainText.setText("0");
         }
 
