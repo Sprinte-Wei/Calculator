@@ -19,12 +19,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-//        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-//        primaryStage.setTitle("Calculator");
-//        primaryStage.setScene(new Scene(root, 360, 680));
-        Parent root = FXMLLoader.load(getClass().getResource("debug.fxml"));
-        primaryStage.setTitle("Calculator Debug");
-        primaryStage.setScene(new Scene(root, 400, 400));
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        primaryStage.setTitle("Calculator");
+        primaryStage.setScene(new Scene(root, 360, 680));
+//        Parent root = FXMLLoader.load(getClass().getResource("debug.fxml"));
+//        primaryStage.setTitle("Calculator Debug");
+//        primaryStage.setScene(new Scene(root, 400, 400));
         primaryStage.setResizable(false);
         primaryStage.show();
     }
